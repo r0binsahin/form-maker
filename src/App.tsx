@@ -1,5 +1,7 @@
+import { FormMaker } from './components';
+
 function App() {
-  return <>hej</>;
+  return <FormMaker />;
 }
 
 export default App;
