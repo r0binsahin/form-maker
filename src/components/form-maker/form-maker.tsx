@@ -109,56 +109,90 @@ export const FormMaker = () => {
   };
 
   return (
-    <div className='container'>
-      <h1>Form Maker</h1>
+    <div className='p-6 max-w-3xl mx-auto bg-white shadow-md rounded-md'>
+      <h1 className='text-2xl font-bold mb-4'>Form Maker</h1>
 
-      <div className='btn-box'>
-        <h3>Add a new field</h3>
-        <div className='wrapper'>
-          <button onClick={() => handleButtonClick('title')}>Form title</button>
-          <button onClick={() => handleButtonClick('text')}>Text field</button>
-          <button onClick={() => handleButtonClick('checkbox')}>
+      <div className='mb-6'>
+        <h3 className='text-lg font-semibold mb-2'>Add a new field</h3>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
+          <button
+            className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            onClick={() => handleButtonClick('title')}
+          >
+            Form Title
+          </button>
+          <button
+            className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            onClick={() => handleButtonClick('text')}
+          >
+            Text Field
+          </button>
+          <button
+            className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            onClick={() => handleButtonClick('checkbox')}
+          >
             Checkbox
           </button>
-          <button onClick={() => handleButtonClick('radio')}>
+          <button
+            className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            onClick={() => handleButtonClick('radio')}
+          >
             Radio Button
           </button>
-          <button onClick={() => handleButtonClick('dropdown')}>
+          <button
+            className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
+            onClick={() => handleButtonClick('dropdown')}
+          >
             Dropdown
           </button>
         </div>
       </div>
 
       {isModalOpen && (
-        <div className='modal'>
-          {currentFieldType === 'title' ? (
-            <div>
-              <h2>Create and Save Title Here</h2>
-              <input
-                type='text'
-                value={formTitle}
-                onChange={handleTitleChange}
-                placeholder='Enter form title'
-              />
-              {titleError && (
-                <div style={{ color: 'red', marginTop: '5px' }}>
-                  {titleError}
+        <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center'>
+          <div className='bg-white p-6 rounded shadow-lg w-full max-w-md'>
+            {currentFieldType === 'title' ? (
+              <div>
+                <h2 className='text-xl font-semibold mb-4'>
+                  Create and Save Title
+                </h2>
+                <input
+                  type='text'
+                  value={formTitle}
+                  onChange={handleTitleChange}
+                  placeholder='Enter form title'
+                  className='w-full px-4 py-2 border rounded mb-2'
+                />
+                {titleError && (
+                  <div className='text-red-500 text-sm'>{titleError}</div>
+                )}
+                <div className='flex justify-end space-x-4'>
+                  <button
+                    className='px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600'
+                    onClick={handleSaveTitle}
+                  >
+                    Save Title
+                  </button>
+                  <button
+                    className='px-4 py-2 bg-gray-300 rounded hover:bg-gray-400'
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    Cancel
+                  </button>
                 </div>
-              )}
-              <button onClick={handleSaveTitle}>Save Title</button>
-              <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-            </div>
-          ) : (
-            <FormField
-              currentFieldType={currentFieldType}
-              fieldToEdit={fieldToEdit}
-              onSaveField={handleSaveField}
-            />
-          )}
+              </div>
+            ) : (
+              <FormField
+                currentFieldType={currentFieldType}
+                fieldToEdit={fieldToEdit}
+                onSaveField={handleSaveField}
+              />
+            )}
+          </div>
         </div>
       )}
 
-      <div className='preview'>
+      <div className='mt-6'>
         <FormPreview
           fields={fields}
           onDeleteField={handleDeleteField}
@@ -167,10 +201,8 @@ export const FormMaker = () => {
           onSaveForm={handleSaveForm}
           title={formTitle}
         />
-        {message && <div className='message'>{message}</div>}
-        {titleError && (
-          <div style={{ color: 'red', marginTop: '5px' }}>{titleError}</div>
-        )}
+        {message && <div className='mt-4 text-green-500'>{message}</div>}
+        {titleError && <div className='mt-4 text-red-500'>{titleError}</div>}
       </div>
     </div>
   );

@@ -1,4 +1,36 @@
 {
   "forms": [
+    {
+      "id": 1734536944180,
+      "title": "New Form",
+      "fields": [
+        {
+          "label": "Fullname",
+          "type": "text"
+        },
+        {
+          "label": "Swedish Citizen",
+          "type": "checkbox",
+          "options": []
+        },
+        {
+          "label": "Smoker",
+          "type": "radio",
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "label": "React.js",
+          "type": "dropdown",
+          "options": [
+            "Beginner",
+            "Intermediate",
+            "Expert"
+          ]
+        }
+      ]
+    }
   ]
 }
