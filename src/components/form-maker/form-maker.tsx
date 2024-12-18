@@ -18,6 +18,25 @@ export const FormMaker = () => {
     setIsModalOpen(false);
   };
 
+  const handleDeleteField = (index: number) => {
+    setFields((prevFields) => prevFields.filter((_, i) => i !== index));
+  };
+
+  const handleEditField = (index: number) => {
+    const fieldToEdit = fields[index];
+    setIsModalOpen(true);
+    setCurrentFieldType(fieldToEdit.type);
+  };
+
+  const handleReorderField = (fromIndex: number, toIndex: number) => {
+    setFields((prevFields) => {
+      const updatedFields = [...prevFields];
+      const [movedField] = updatedFields.splice(fromIndex, 1);
+      updatedFields.splice(toIndex, 0, movedField);
+      return updatedFields;
+    });
+  };
+
   return (
     <div className='container'>
       <h1>Form Maker</h1>
@@ -48,7 +67,12 @@ export const FormMaker = () => {
       )}
 
       <div className='preview'>
-        <FormPreview fields={fields} />
+        <FormPreview
+          fields={fields}
+          onDeleteField={handleDeleteField}
+          onEditField={handleEditField}
+          onReorderField={handleReorderField}
+        />
       </div>
     </div>
   );
