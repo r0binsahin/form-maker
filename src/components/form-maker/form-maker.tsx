@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import { FormPreview } from '../form-preview/form-preview';
+import { FormField } from '../form-field/form-field';
+import { Field } from '../../types/Field';
 
 export const FormMaker = () => {
-  const [isModal, setIsModal] = useState(false);
-  const [fieldType, setFieldType] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentFieldType, setCurrentFieldType] = useState('');
+  const [fields, setFields] = useState<Field[]>([]);
 
   const handleButtonClick = (fieldType: string) => {
-    setIsModal(!isModal);
-    setFieldType(fieldType);
+    setIsModalOpen(true);
+    setCurrentFieldType(fieldType);
+  };
+
+  const handleSaveField = (field: Field) => {
+    setFields([...fields, field]);
+    setIsModalOpen(false);
   };
 
   return (
@@ -30,15 +38,17 @@ export const FormMaker = () => {
         </div>
       </div>
 
-      {isModal && (
+      {isModalOpen && (
         <div className='modal'>
-          <h1>I am a modal</h1>
-          <p>{fieldType}</p>
+          <FormField
+            currentFieldType={currentFieldType}
+            onSaveField={handleSaveField}
+          />
         </div>
       )}
 
       <div className='preview'>
-        <FormPreview />
+        <FormPreview fields={fields} />
       </div>
     </div>
   );
