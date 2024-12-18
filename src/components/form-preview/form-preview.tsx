@@ -28,50 +28,57 @@ export const FormPreview = ({
   return (
     <div>
       <h2>Form Preview</h2>
-      <h3>{title}</h3>
-      {fields.map((field, index) => (
-        <div key={index} className='field-preview'>
-          <label>{field.label}</label>
-          {field.type === 'text' && (
-            <input type='text' placeholder={field.placeholder} disabled />
-          )}
-          {field.type === 'checkbox' && <input type='checkbox' disabled />}
-          {field.type === 'radio' &&
-            field.options?.map((option, index) => (
-              <div key={index}>
-                <input
-                  type='radio'
-                  name={field.label}
-                  id={`${field.label}-${index}`}
-                  disabled
-                />
-                <label htmlFor={`${field.label}-${index}`}>{option}</label>
+
+      {fields.length > 0 ? (
+        <div className='wrapper'>
+          <h3>{title}</h3>
+          {fields.map((field, index) => (
+            <div key={index} className='field-preview'>
+              <label>{field.label}</label>
+              {field.type === 'text' && (
+                <input type='text' placeholder={field.placeholder} />
+              )}
+              {field.type === 'checkbox' && <input type='checkbox' />}
+              {field.type === 'radio' &&
+                field.options?.map((option, index) => (
+                  <div key={index}>
+                    <input
+                      type='radio'
+                      name={field.label}
+                      id={`${field.label}-${index}`}
+                    />
+                    <label htmlFor={`${field.label}-${index}`}>{option}</label>
+                  </div>
+                ))}
+              {field.type === 'dropdown' && (
+                <select>
+                  {field.options?.map((option, index) => (
+                    <option key={index}>{option}</option>
+                  ))}
+                </select>
+              )}
+
+              <div className='actions'>
+                {fields.length > 1 && index != 0 && (
+                  <button onClick={() => handleMoveUp(index)}>Move Up</button>
+                )}
+
+                {fields.length > 1 && index != fields.length - 1 && (
+                  <button onClick={() => handleMoveDown(index)}>
+                    Move Down
+                  </button>
+                )}
+
+                <button onClick={() => onEditField(index)}>Edit</button>
+                <button onClick={() => onDeleteField(index)}>Delete</button>
               </div>
-            ))}
-          {field.type === 'dropdown' && (
-            <select disabled>
-              {field.options?.map((option, index) => (
-                <option key={index}>{option}</option>
-              ))}
-            </select>
-          )}
-
-          <div className='actions'>
-            {fields.length > 1 && index != 0 && (
-              <button onClick={() => handleMoveUp(index)}>Move Up</button>
-            )}
-
-            {fields.length > 1 && index != fields.length - 1 && (
-              <button onClick={() => handleMoveDown(index)}>Move Down</button>
-            )}
-
-            <button onClick={() => onEditField(index)}>Edit</button>
-            <button onClick={() => onDeleteField(index)}>Delete</button>
-          </div>
+            </div>
+          ))}
+          <button onClick={onSaveForm}>Save Form</button>
         </div>
-      ))}
-
-      <button onClick={onSaveForm}>Save Form</button>
+      ) : (
+        <h3> No preview to display yet</h3>
+      )}
     </div>
   );
 };

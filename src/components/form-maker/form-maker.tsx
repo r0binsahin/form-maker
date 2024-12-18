@@ -9,6 +9,7 @@ export const FormMaker = () => {
   const [fields, setFields] = useState<Field[]>([]);
   const [fieldToEdit, setFieldToEdit] = useState<Field | null>(null);
   const [formTitle, setFormTitle] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleButtonClick = (fieldType: string) => {
     setIsModalOpen(true);
@@ -61,11 +62,15 @@ export const FormMaker = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Something went wrong');
       }
 
       const data = await response.json();
+      setMessage('Form saved successfully!');
       console.log('Form saved successfully:', data);
+
+      setFormTitle('');
+      setFields([]);
     } catch (error) {
       console.error('Error saving form:', error);
     }
@@ -120,6 +125,7 @@ export const FormMaker = () => {
           onSaveForm={handleSaveForm}
           title={formTitle}
         />
+        {message && <div className='message'>{message}</div>}
       </div>
     </div>
   );

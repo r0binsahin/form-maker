@@ -1,14 +1,68 @@
 {
   "forms": [
     {
-      "id": "3532",
-      "title": "new form",
+      "id": "cd46",
+      "title": "new form ",
       "fields": [
         {
-          "id": 1734526326846,
-          "label": "anme",
+          "id": 1734528042760,
+          "label": "Full name: ",
           "type": "text",
-          "placeholder": "sldhf",
+          "placeholder": "type here...",
+          "options": []
+        },
+        {
+          "id": 1734528070748,
+          "label": "Swedish Citizen",
+          "type": "checkbox",
+          "placeholder": "",
+          "options": []
+        },
+        {
+          "id": 1734528145763,
+          "label": "Smoking",
+          "type": "radio",
+          "placeholder": "",
+          "options": [
+            "yes",
+            "no"
+          ]
+        },
+        {
+          "id": 1734528160399,
+          "label": "React ",
+          "type": "dropdown",
+          "placeholder": "",
+          "options": [
+            "Beginner",
+            "Intermediate",
+            "Expert"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "112b",
+      "title": "",
+      "fields": [
+        {
+          "id": 1734528618118,
+          "label": "Fullname",
+          "type": "text",
+          "placeholder": "type your name",
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "b38d",
+      "title": "",
+      "fields": [
+        {
+          "id": 1734528618118,
+          "label": "Fullname",
+          "type": "text",
+          "placeholder": "type your name",
           "options": []
         }
       ]
