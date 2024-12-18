@@ -5,12 +5,14 @@ interface FormFieldProps {
   currentFieldType: string;
   fieldToEdit: Field | null;
   onSaveField: (field: Field) => void;
+  handleCancel: () => void;
 }
 
 export const FormField = ({
   currentFieldType,
   fieldToEdit,
   onSaveField,
+  handleCancel,
 }: FormFieldProps) => {
   const [field, setField] = useState<Field>({
     label: '',
@@ -141,6 +143,12 @@ export const FormField = ({
         className='w-full py-2 bg-green-500 text-white text-sm font-medium rounded-lg shadow-md hover:bg-green-600 focus:ring-2 focus:ring-green-500'
       >
         {fieldToEdit ? 'Save Changes' : 'Add Field'}
+      </button>
+      <button
+        onClick={handleCancel}
+        className='w-full py-2 bg-red-500 text-white text-sm font-medium rounded-lg shadow-md hover:bg-red-600 focus:ring-2 focus:ring-red-500 mt-2'
+      >
+        Cancel
       </button>
     </div>
   );

@@ -186,6 +186,7 @@ export const FormMaker = () => {
                 currentFieldType={currentFieldType}
                 fieldToEdit={fieldToEdit}
                 onSaveField={handleSaveField}
+                handleCancel={() => setIsModalOpen(!isModalOpen)}
               />
             )}
           </div>
