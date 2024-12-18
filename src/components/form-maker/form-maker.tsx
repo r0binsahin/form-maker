@@ -10,6 +10,7 @@ export const FormMaker = () => {
   const [fieldToEdit, setFieldToEdit] = useState<Field | null>(null);
   const [formTitle, setFormTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [titleError, setTitleError] = useState('');
 
   const handleButtonClick = (fieldType: string) => {
     setIsModalOpen(true);
@@ -46,14 +47,36 @@ export const FormMaker = () => {
     });
   };
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFormTitle(value);
+    if (value.trim() === '') {
+      setTitleError('Form title cannot be empty');
+    } else {
+      setTitleError('');
+    }
+  };
+
+  const handleSaveTitle = () => {
+    if (formTitle.trim() === '') {
+      setTitleError('Form title cannot be empty');
+      return;
+    }
+    setIsModalOpen(false);
+  };
+
   const handleSaveForm = async () => {
+    if (formTitle.trim() === '') {
+      setTitleError('Form title cannot be empty');
+      return;
+    }
+
     const formData: Form = {
       id: Date.now(),
       title: formTitle,
       fields: fields.map((field) => {
         if (field.type === 'text') {
           const { options, ...textField } = field;
-
           return textField;
         }
         return field;
@@ -81,10 +104,8 @@ export const FormMaker = () => {
       setFields([]);
     } catch (error) {
       console.error('Error saving form:', error);
+      setMessage('could not save the form. Something went wrong!');
     }
-  };
-  const handleSaveTitle = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -116,9 +137,14 @@ export const FormMaker = () => {
               <input
                 type='text'
                 value={formTitle}
-                onChange={(e) => setFormTitle(e.target.value)}
+                onChange={handleTitleChange}
                 placeholder='Enter form title'
               />
+              {titleError && (
+                <div style={{ color: 'red', marginTop: '5px' }}>
+                  {titleError}
+                </div>
+              )}
               <button onClick={handleSaveTitle}>Save Title</button>
               <button onClick={() => setIsModalOpen(false)}>Cancel</button>
             </div>
@@ -142,6 +168,9 @@ export const FormMaker = () => {
           title={formTitle}
         />
         {message && <div className='message'>{message}</div>}
+        {titleError && (
+          <div style={{ color: 'red', marginTop: '5px' }}>{titleError}</div>
+        )}
       </div>
     </div>
   );
