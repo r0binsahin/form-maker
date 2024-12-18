@@ -5,6 +5,8 @@ interface FormPreviewProps {
   onDeleteField: (index: number) => void;
   onEditField: (index: number) => void;
   onReorderField: (fromIndex: number, toIndex: number) => void;
+  onSaveForm: () => void;
+  title: string;
 }
 
 export const FormPreview = ({
@@ -12,6 +14,8 @@ export const FormPreview = ({
   onDeleteField,
   onEditField,
   onReorderField,
+  onSaveForm,
+  title,
 }: FormPreviewProps) => {
   const handleMoveUp = (index: number) => {
     if (index > 0) onReorderField(index, index - 1);
@@ -24,6 +28,7 @@ export const FormPreview = ({
   return (
     <div>
       <h2>Form Preview</h2>
+      <h3>{title}</h3>
       {fields.map((field, index) => (
         <div key={index} className='field-preview'>
           <label>{field.label}</label>
@@ -65,6 +70,8 @@ export const FormPreview = ({
           </div>
         </div>
       ))}
+
+      <button onClick={onSaveForm}>Save Form</button>
     </div>
   );
 };

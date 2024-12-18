@@ -8,6 +8,7 @@ export const FormMaker = () => {
   const [currentFieldType, setCurrentFieldType] = useState('');
   const [fields, setFields] = useState<Field[]>([]);
   const [fieldToEdit, setFieldToEdit] = useState<Field | null>(null);
+  const [formTitle, setFormTitle] = useState('');
 
   const handleButtonClick = (fieldType: string) => {
     setIsModalOpen(true);
@@ -44,9 +45,45 @@ export const FormMaker = () => {
     });
   };
 
+  const handleSaveForm = async () => {
+    const formData = {
+      title: formTitle,
+      fields: fields,
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/forms', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Form saved successfully:', data);
+    } catch (error) {
+      console.error('Error saving form:', error);
+    }
+  };
   return (
     <div className='container'>
       <h1>Form Maker</h1>
+
+      <div>
+        <label>
+          Form Title:
+          <input
+            type='text'
+            value={formTitle}
+            onChange={(e) => setFormTitle(e.target.value)}
+          />
+        </label>
+      </div>
 
       <div className='btn-box'>
         <h3>Add a new field</h3>
@@ -80,6 +117,8 @@ export const FormMaker = () => {
           onDeleteField={handleDeleteField}
           onEditField={handleEditField}
           onReorderField={handleReorderField}
+          onSaveForm={handleSaveForm}
+          title={formTitle}
         />
       </div>
     </div>
