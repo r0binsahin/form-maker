@@ -5,3 +5,8 @@ export type Field = {
   label: string;
   options?: string[];
 };
+
+export type Form = {
+  title: string;
+  fields: Field[];
+};

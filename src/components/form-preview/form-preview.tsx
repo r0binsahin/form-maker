@@ -1,4 +1,4 @@
-import { Field } from '../../types/Field';
+import { Field } from '../../types/types';
 
 interface FormPreviewProps {
   fields: Field[];
