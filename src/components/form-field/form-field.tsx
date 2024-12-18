@@ -13,7 +13,6 @@ export const FormField = ({
   onSaveField,
 }: FormFieldProps) => {
   const [field, setField] = useState<Field>({
-    id: Date.now(),
     label: '',
     type: currentFieldType,
     placeholder: '',
@@ -25,7 +24,6 @@ export const FormField = ({
       setField(fieldToEdit);
     } else {
       setField({
-        id: Date.now(),
         label: '',
         type: currentFieldType,
         placeholder: '',

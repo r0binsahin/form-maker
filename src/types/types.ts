@@ -1,5 +1,4 @@
 export type Field = {
-  id: number;
   type: string;
   placeholder?: string;
   label: string;
@@ -7,6 +6,7 @@ export type Field = {
 };
 
 export type Form = {
+  id: number;
   title: string;
   fields: Field[];
 };

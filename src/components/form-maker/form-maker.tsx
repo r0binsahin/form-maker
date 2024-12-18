@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FormPreview } from '../form-preview/form-preview';
 import { FormField } from '../form-field/form-field';
-import { Field } from '../../types/types';
+import { Field, Form } from '../../types/types';
 
 export const FormMaker = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,7 +47,8 @@ export const FormMaker = () => {
   };
 
   const handleSaveForm = async () => {
-    const formData = {
+    const formData: Form = {
+      id: Date.now(),
       title: formTitle,
       fields: fields,
     };
@@ -75,6 +76,7 @@ export const FormMaker = () => {
       console.error('Error saving form:', error);
     }
   };
+
   return (
     <div className='container'>
       <h1>Form Maker</h1>
