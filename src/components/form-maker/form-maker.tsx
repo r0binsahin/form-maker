@@ -109,7 +109,7 @@ export const FormMaker = () => {
   };
 
   return (
-    <div className='p-6 max-w-3xl mx-auto bg-white shadow-md rounded-md'>
+    <div className='p-6  mt-10 max-w-3xl mx-auto bg-white border-2 rounded-md'>
       <h1 className='text-2xl font-bold mb-4'>Form Maker</h1>
 
       <div className='mb-6'>
