@@ -38,7 +38,7 @@ export const FormPreview = ({
           {fields.map((field, index) => (
             <div
               key={index}
-              className='bg-white shadow-md rounded-md p-4 flex flex-col gap-4'
+              className='group bg-white shadow-md rounded-md p-4 flex flex-col gap-4 relative'
             >
               <label className='text-lg font-medium text-gray-700'>
                 {field.label}
@@ -82,34 +82,32 @@ export const FormPreview = ({
                 </select>
               )}
 
-              <div className='flex gap-4 justify-between'>
+              <div className='absolute inset-0 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200  text-sm top-[-40px]'>
                 {fields.length > 1 && index !== 0 && (
                   <button
                     onClick={() => handleMoveUp(index)}
-                    className='bg-[#e85d58] text-white px-4 py-2 rounded-md'
+                    className='bg-[#e85d58] text-white px-3 py-1 rounded-md'
                   >
                     Move Up
                   </button>
                 )}
-
                 {fields.length > 1 && index !== fields.length - 1 && (
                   <button
                     onClick={() => handleMoveDown(index)}
-                    className='bg-[#e85d58] text-white px-4 py-2 rounded-md'
+                    className='bg-[#e85d58] text-white px-3 py-1 rounded-md'
                   >
                     Move Down
                   </button>
                 )}
-
                 <button
                   onClick={() => onEditField(index)}
-                  className='bg-[#f5e9dd] text-[#2b2b2b] border border-gray-300 px-4 py-2 rounded-md'
+                  className='bg-gray-200 text-[#2b2b2b] border border-gray-300 px-3 py-1 rounded-md'
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => onDeleteField(index)}
-                  className='bg-red-500 text-white px-4 py-2 rounded-md'
+                  className='bg-red-500 text-white px-3 py-1 rounded-md'
                 >
                   Delete
                 </button>
