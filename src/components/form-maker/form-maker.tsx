@@ -76,25 +76,18 @@ export const FormMaker = () => {
       console.error('Error saving form:', error);
     }
   };
+  const handleSaveTitle = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='container'>
       <h1>Form Maker</h1>
 
-      <div>
-        <label>
-          Form Title:
-          <input
-            type='text'
-            value={formTitle}
-            onChange={(e) => setFormTitle(e.target.value)}
-          />
-        </label>
-      </div>
-
       <div className='btn-box'>
         <h3>Add a new field</h3>
         <div className='wrapper'>
+          <button onClick={() => handleButtonClick('title')}>Form title</button>
           <button onClick={() => handleButtonClick('text')}>Text field</button>
           <button onClick={() => handleButtonClick('checkbox')}>
             Checkbox
@@ -110,11 +103,25 @@ export const FormMaker = () => {
 
       {isModalOpen && (
         <div className='modal'>
-          <FormField
-            currentFieldType={currentFieldType}
-            fieldToEdit={fieldToEdit}
-            onSaveField={handleSaveField}
-          />
+          {currentFieldType === 'title' ? (
+            <div>
+              <h2>Create and Save Title Here</h2>
+              <input
+                type='text'
+                value={formTitle}
+                onChange={(e) => setFormTitle(e.target.value)}
+                placeholder='Enter form title'
+              />
+              <button onClick={handleSaveTitle}>Save Title</button>
+              <button onClick={() => setIsModalOpen(false)}>Cancel</button>
+            </div>
+          ) : (
+            <FormField
+              currentFieldType={currentFieldType}
+              fieldToEdit={fieldToEdit}
+              onSaveField={handleSaveField}
+            />
+          )}
         </div>
       )}
 

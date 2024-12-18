@@ -66,6 +66,18 @@
           "options": []
         }
       ]
+    },
+    {
+      "id": 1734531142868,
+      "title": "new title",
+      "fields": [
+        {
+          "label": "name ",
+          "type": "text",
+          "placeholder": "skdjf",
+          "options": []
+        }
+      ]
     }
   ]
 }

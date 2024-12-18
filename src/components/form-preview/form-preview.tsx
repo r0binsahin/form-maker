@@ -29,7 +29,7 @@ export const FormPreview = ({
     <div>
       <h2>Form Preview</h2>
 
-      {fields.length > 0 ? (
+      {fields.length > 0 || title != '' ? (
         <div className='wrapper'>
           <h3>{title}</h3>
           {fields.map((field, index) => (
