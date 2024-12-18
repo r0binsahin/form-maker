@@ -7,14 +7,20 @@ export const FormMaker = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentFieldType, setCurrentFieldType] = useState('');
   const [fields, setFields] = useState<Field[]>([]);
+  const [fieldToEdit, setFieldToEdit] = useState<Field | null>(null);
 
   const handleButtonClick = (fieldType: string) => {
     setIsModalOpen(true);
     setCurrentFieldType(fieldType);
+    setFieldToEdit(null);
   };
 
   const handleSaveField = (field: Field) => {
-    setFields([...fields, field]);
+    if (fieldToEdit) {
+      setFields(fields.map((f) => (f === fieldToEdit ? field : f)));
+    } else {
+      setFields([...fields, field]);
+    }
     setIsModalOpen(false);
   };
 
@@ -25,6 +31,7 @@ export const FormMaker = () => {
   const handleEditField = (index: number) => {
     const fieldToEdit = fields[index];
     setIsModalOpen(true);
+    setFieldToEdit(fieldToEdit);
     setCurrentFieldType(fieldToEdit.type);
   };
 
@@ -61,6 +68,7 @@ export const FormMaker = () => {
         <div className='modal'>
           <FormField
             currentFieldType={currentFieldType}
+            fieldToEdit={fieldToEdit}
             onSaveField={handleSaveField}
           />
         </div>
