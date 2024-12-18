@@ -46,7 +46,7 @@ export const FormField = ({
   };
 
   const handleSave = () => {
-    onSaveField(field); // Save the field (either add new or update)
+    onSaveField(field);
   };
 
   return (
