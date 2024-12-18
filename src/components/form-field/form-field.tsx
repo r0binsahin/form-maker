@@ -83,34 +83,45 @@ export const FormField = ({
       onSaveField(field);
     }
   };
-
   return (
-    <div>
-      <h2>{fieldToEdit ? 'Edit Field' : 'Add New Field'}</h2>
+    <div className='p-4 bg-gray-100 rounded-lg shadow-lg md:p-6'>
+      <h2 className='text-xl font-bold text-gray-800 mb-4'>
+        {fieldToEdit ? 'Edit Field' : 'Add New Field'}
+      </h2>
 
-      <label>
-        Label:
+      <div className='mb-4'>
+        <label className='block text-sm font-medium text-gray-700 mb-2'>
+          Label:
+        </label>
         <input
           type='text'
           name='label'
           value={field.label}
           onChange={handleChange}
+          className='w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
-        {errors.label && <div style={{ color: 'red' }}>{errors.label}</div>}
-      </label>
+        {errors.label && (
+          <div className='text-sm text-red-500 mt-1'>{errors.label}</div>
+        )}
+      </div>
 
       {(field.type === 'radio' || field.type === 'dropdown') && (
-        <div>
-          <label>Options:</label>
+        <div className='mb-4'>
+          <label className='block text-sm font-medium text-gray-700 mb-2'>
+            Options:
+          </label>
           {field.options?.map((option, index) => (
-            <div key={index}>
+            <div key={index} className='flex items-center gap-2 mb-2'>
               <input
                 type='text'
                 value={option}
                 onChange={(e) => handleOptionChange(index, e.target.value)}
+                className='w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
               {errors.options?.[index] && (
-                <div style={{ color: 'red' }}>{errors.options[index]}</div>
+                <div className='text-sm text-red-500'>
+                  {errors.options[index]}
+                </div>
               )}
             </div>
           ))}
@@ -118,13 +129,17 @@ export const FormField = ({
             onClick={() =>
               setField({ ...field, options: [...(field.options || []), ''] })
             }
+            className='px-4 py-2 bg-blue-500 text-white text-sm rounded-lg shadow-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-500'
           >
             Add Option
           </button>
         </div>
       )}
 
-      <button onClick={handleSave}>
+      <button
+        onClick={handleSave}
+        className='w-full py-2 bg-green-500 text-white text-sm font-medium rounded-lg shadow-md hover:bg-green-600 focus:ring-2 focus:ring-green-500'
+      >
         {fieldToEdit ? 'Save Changes' : 'Add Field'}
       </button>
     </div>
