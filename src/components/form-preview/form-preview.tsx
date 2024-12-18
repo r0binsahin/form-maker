@@ -36,7 +36,7 @@ export const FormPreview = ({
             <div key={index} className='field-preview'>
               <label>{field.label}</label>
               {field.type === 'text' && (
-                <input type='text' placeholder={field.placeholder} />
+                <input type='text' placeholder=' Type here....' />
               )}
               {field.type === 'checkbox' && <input type='checkbox' />}
               {field.type === 'radio' &&

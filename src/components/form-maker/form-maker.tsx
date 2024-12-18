@@ -50,7 +50,14 @@ export const FormMaker = () => {
     const formData: Form = {
       id: Date.now(),
       title: formTitle,
-      fields: fields,
+      fields: fields.map((field) => {
+        if (field.type === 'text') {
+          const { options, ...textField } = field;
+
+          return textField;
+        }
+        return field;
+      }),
     };
 
     try {

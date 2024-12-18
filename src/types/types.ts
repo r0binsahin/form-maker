@@ -1,6 +1,5 @@
 export type Field = {
   type: string;
-  placeholder?: string;
   label: string;
   options?: string[];
 };

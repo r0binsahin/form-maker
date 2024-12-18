@@ -15,7 +15,6 @@ export const FormField = ({
   const [field, setField] = useState<Field>({
     label: '',
     type: currentFieldType,
-    placeholder: '',
     options: [],
   });
 
@@ -26,7 +25,6 @@ export const FormField = ({
       setField({
         label: '',
         type: currentFieldType,
-        placeholder: '',
         options: [],
       });
     }
@@ -59,18 +57,6 @@ export const FormField = ({
           onChange={handleChange}
         />
       </label>
-
-      {field.type === 'text' && (
-        <label>
-          Placeholder:
-          <input
-            type='text'
-            name='placeholder'
-            value={field.placeholder}
-            onChange={handleChange}
-          />
-        </label>
-      )}
 
       {field.type === 'radio' && (
         <div>
