@@ -43,8 +43,9 @@ export const FormField = ({
     }
   }, [currentFieldType, fieldToEdit]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLabelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setField((prevField) => ({ ...prevField, [name]: value }));
 
     if (name === 'label') {
@@ -102,7 +103,7 @@ export const FormField = ({
           type='text'
           name='label'
           value={field.label}
-          onChange={handleChange}
+          onChange={handleLabelChange}
           className='w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
         />
         {errors.label && (
