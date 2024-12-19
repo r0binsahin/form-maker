@@ -58,16 +58,16 @@ export const FormPreview = ({
                 />
               )}
               {field.type === 'radio' &&
-                field.options?.map((option, idx) => (
-                  <div key={idx} className='flex items-center gap-2'>
+                field.options?.map((option, i) => (
+                  <div key={i} className='flex items-center gap-2'>
                     <input
                       type='radio'
                       name={field.label}
-                      id={`${field.label}-${idx}`}
+                      id={`${field.label}-${i}`}
                       className='h-5 w-5 text-[#e85d58] focus:ring-[#e85d58]'
                     />
                     <label
-                      htmlFor={`${field.label}-${idx}`}
+                      htmlFor={`${field.label}-${i}`}
                       className='text-gray-700'
                     >
                       {option}
@@ -76,13 +76,13 @@ export const FormPreview = ({
                 ))}
               {field.type === 'dropdown' && (
                 <select className='border border-gray-300 rounded-md p-2 w-full'>
-                  {field.options?.map((option, idx) => (
-                    <option key={idx}>{option}</option>
+                  {field.options?.map((option, i) => (
+                    <option key={i}>{option}</option>
                   ))}
                 </select>
               )}
 
-              <div className='absolute right-0 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm top-[0px]'>
+              <div className='absolute right-0 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm top-0'>
                 {fields.length > 1 && index !== 0 && (
                   <button
                     onClick={() => handleMoveUp(index)}

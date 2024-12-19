@@ -12,7 +12,7 @@ export const FormMaker = () => {
   const [message, setMessage] = useState('');
   const [titleError, setTitleError] = useState('');
 
-  const handleButtonClick = (fieldType: string) => {
+  const handleAddField = (fieldType: string) => {
     setIsModalOpen(true);
     setCurrentFieldType(fieldType);
     setFieldToEdit(null);
@@ -24,6 +24,7 @@ export const FormMaker = () => {
     } else {
       setFields([...fields, field]);
     }
+
     setIsModalOpen(false);
   };
 
@@ -33,23 +34,31 @@ export const FormMaker = () => {
 
   const handleEditField = (index: number) => {
     const fieldToEdit = fields[index];
+
     setIsModalOpen(true);
+
     setFieldToEdit(fieldToEdit);
+
     setCurrentFieldType(fieldToEdit.type);
   };
 
   const handleReorderField = (fromIndex: number, toIndex: number) => {
     setFields((prevFields) => {
       const updatedFields = [...prevFields];
+
       const [movedField] = updatedFields.splice(fromIndex, 1);
+
       updatedFields.splice(toIndex, 0, movedField);
+
       return updatedFields;
     });
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setFormTitle(value);
+
     if (value.trim() === '') {
       setTitleError('Form title cannot be empty');
     } else {
@@ -96,15 +105,16 @@ export const FormMaker = () => {
         throw new Error('Something went wrong');
       }
 
-      const data = await response.json();
+      await response.json();
+
       setMessage('Form saved successfully!');
-      console.log('Form saved successfully:', data);
 
       setFormTitle('');
+
       setFields([]);
     } catch (error) {
       console.error('Error saving form:', error);
-      setMessage('could not save the form. Something went wrong!');
+      setMessage('Could not save  form. Something went wrong!');
     }
   };
 
@@ -117,31 +127,31 @@ export const FormMaker = () => {
         <div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
           <button
             className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-            onClick={() => handleButtonClick('title')}
+            onClick={() => handleAddField('title')}
           >
             Form Title
           </button>
           <button
             className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-            onClick={() => handleButtonClick('text')}
+            onClick={() => handleAddField('text')}
           >
             Text Field
           </button>
           <button
             className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-            onClick={() => handleButtonClick('checkbox')}
+            onClick={() => handleAddField('checkbox')}
           >
             Checkbox
           </button>
           <button
             className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-            onClick={() => handleButtonClick('radio')}
+            onClick={() => handleAddField('radio')}
           >
             Radio Button
           </button>
           <button
             className='px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'
-            onClick={() => handleButtonClick('dropdown')}
+            onClick={() => handleAddField('dropdown')}
           >
             Dropdown
           </button>
