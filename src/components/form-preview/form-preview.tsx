@@ -82,7 +82,7 @@ export const FormPreview = ({
                 </select>
               )}
 
-              <div className='absolute inset-0 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200  text-sm top-[-40px]'>
+              <div className='absolute right-0 flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm top-[0px]'>
                 {fields.length > 1 && index !== 0 && (
                   <button
                     onClick={() => handleMoveUp(index)}
