@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Field } from '../../types/types';
+import { Field } from '../types/types';
 
 interface FormFieldProps {
   currentFieldType: string;

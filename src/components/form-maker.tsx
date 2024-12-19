@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FormPreview } from '../form-preview/form-preview';
-import { FormField } from '../form-field/form-field';
-import { Field, Form } from '../../types/types';
+import { FormPreview, FormField } from '.';
+
+import { Field, Form } from '../types/types';
 
 export const FormMaker = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
