@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import { Field } from '../../types/types';
 
 interface FormFieldProps {
@@ -7,6 +8,11 @@ interface FormFieldProps {
   onSaveField: (field: Field) => void;
   handleCancel: () => void;
 }
+
+type InputError = {
+  label: string;
+  options: string[];
+};
 
 export const FormField = ({
   currentFieldType,
@@ -20,10 +26,7 @@ export const FormField = ({
     options: [],
   });
 
-  const [errors, setErrors] = useState<{
-    label: string;
-    options: string[];
-  }>({
+  const [errors, setErrors] = useState<InputError>({
     label: '',
     options: [],
   });
