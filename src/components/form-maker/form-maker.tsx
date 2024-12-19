@@ -105,8 +105,6 @@ export const FormMaker = () => {
         throw new Error('Something went wrong');
       }
 
-      await response.json();
-
       setMessage('Form saved successfully!');
 
       setFormTitle('');
